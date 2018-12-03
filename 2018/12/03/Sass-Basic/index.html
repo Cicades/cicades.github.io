@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>Sass Basic | cicades&#39;blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="編譯sass 單文件轉換——sass &amp;lt;inputFileName&amp;gt; &amp;lt;outputFileName&amp;gt;  單文件監聽命令——sass --watch &amp;lt;inputFileName&amp;gt;:&amp;lt;outputFileName&amp;gt;  對sass或者scss文件進行修改，編譯器會自動將其編譯為css文件，對原有文件進行跟新   目錄監聽——sass --watch &amp;">
+<meta name="keywords" content="Sass">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sass Basic">
+<meta property="og:url" content="http://yoursite.com/2018/12/03/Sass-Basic/index.html">
+<meta property="og:site_name" content="cicades&#39;blogs">
+<meta property="og:description" content="編譯sass 單文件轉換——sass &amp;lt;inputFileName&amp;gt; &amp;lt;outputFileName&amp;gt;  單文件監聽命令——sass --watch &amp;lt;inputFileName&amp;gt;:&amp;lt;outputFileName&amp;gt;  對sass或者scss文件進行修改，編譯器會自動將其編譯為css文件，對原有文件進行跟新   目錄監聽——sass --watch &amp;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-03T11:45:46.234Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sass Basic">
+<meta name="twitter:description" content="編譯sass 單文件轉換——sass &amp;lt;inputFileName&amp;gt; &amp;lt;outputFileName&amp;gt;  單文件監聽命令——sass --watch &amp;lt;inputFileName&amp;gt;:&amp;lt;outputFileName&amp;gt;  對sass或者scss文件進行修改，編譯器會自動將其編譯為css文件，對原有文件進行跟新   目錄監聽——sass --watch &amp;">
+  
+    <link rel="alternate" href="/atom.xml" title="cicades&#39;blogs" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="../../../../css/common.css">
+<link rel="stylesheet" href="../../../../css/nav.css">
+<link rel="stylesheet" href="../../../../css/layout.css">
+  
+
+</head>
+</html>
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Cicades</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="../../../../index.html">
+                Home
+            </a>
+            
+            <a class="nav-item" href="../../../../works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="../../../../about">
+                About
+            </a>
+            
+            <a class="nav-item" href="../../../../tags">
+                Tags
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="../../../../index.html">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="../../../../works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="../../../../about">
+                About
+            </a>
+            
+            <a class="nav-item flex-1" href="../../../../tags">
+                Tags
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>Sass Basic</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="/2018/11/27/hello/dos.png">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Cicades</span>
+                <span class="post-date sub-title">at: 2018-12-03</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/Sass/">Sass</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <h2 id="編譯sass"><a href="#編譯sass" class="headerlink" title="編譯sass"></a>編譯sass</h2><ul>
+<li><p>單文件轉換——<code>sass &lt;inputFileName&gt; &lt;outputFileName&gt;</code></p>
+</li>
+<li><p>單文件監聽命令——<code>sass --watch &lt;inputFileName&gt;:&lt;outputFileName&gt;</code></p>
+<blockquote>
+<p>對sass或者scss文件進行修改，編譯器會自動將其編譯為css文件，對原有文件進行跟新</p>
+</blockquote>
+</li>
+<li><p>目錄監聽——<code>sass --watch &lt;inputDir/sass&gt;:&lt;outputDir/stylesheets&gt;</code></p>
+</li>
+<li><p>編譯排版配置選項——<code>--style &lt;options&gt;</code></p>
+<ol>
+<li><code>nested</code>——以縮進格式排版</li>
+<li><code>expanded</code>——正常格式排版</li>
+<li><code>compact</code>——壓縮排版</li>
+<li><code>compressed</code>——壓縮成一行排版</li>
+</ol>
+</li>
+<li><p>文件保存——<code>style.scss</code>與<code>style.sass</code>之間的語法存在差異，後者采用縮進和換行進行標識代碼段落和語句結束。</p>
+</li>
+</ul>
+<h2 id="基本語法"><a href="#基本語法" class="headerlink" title="基本語法"></a>基本語法</h2><ul>
+<li><p>變量</p>
+<ol>
+<li>聲明變量——<code>$varName:value</code>,可以用空格或者逗號分割為變量賦予多個屬性值</li>
+<li>變量作用於——聲明在大括號内的變量只能在大括號内使用</li>
+</ol>
+</li>
+<li><p>嵌套</p>
+<pre><code>//原生css
+#content article h1 { color: #333 }
+#content article p { margin-bottom: 1.4em }
+#content aside { background-color: #EEE }
+
+</code></pre><ol>
+<li><p>父選擇器標識——<code>&amp;</code>（相當於js中的this）</p>
+</li>
+<li><p>群組選擇器嵌套</p>
+<pre><code>//原生css
+.container h1, .container h2, .container h3 { margin-bottom: .8em }
+//sass
+.container {
+  h1, h2, h3 {margin-bottom: .8em}
+}
+</code></pre></li>
+<li><p>子組合選擇器和同層選擇器：&gt; 、+、~</p>
+<pre><code>//sass
+article {
+  ~ article { border-top: 1px dashed #ccc }
+  &gt; section { background: #eee }
+  dl &gt; {
+    dt { color: #333 }
+    dd { color: #555 }
+  }
+  nav + &amp; { margin-top: 0 }
+}
+//css
+article ~ article { border-top: 1px dashed #ccc }
+article &gt; footer { background: #eee }
+article dl &gt; dt { color: #333 }
+article dl &gt; dd { color: #555 }
+nav + article { margin-top: 0 }
+</code></pre></li>
+<li><p>嵌套屬性</p>
+<pre><code class="sass">//原生css
+nav {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ccc;
+}
+//sass
+nav {
+  border:{
+  style: solid;
+  width: 1px;
+  color: #ccc;
+  }
+}
+</code></pre>
+</li>
+</ol>
+<h2 id="導入sass文件"><a href="#導入sass文件" class="headerlink" title="導入sass文件"></a>導入sass文件</h2><ol>
+<li><p>語法——<code>@import &quot;&lt;filename&gt;&quot;;</code></p>
+</li>
+<li><p>默認變量值</p>
+<pre><code>$fancybox-width: 400px !default;
+.fancybox {
+    width: $fancybox-width;
+}
+</code></pre></li>
+</ol>
+<h2 id="混合器"><a href="#混合器" class="headerlink" title="混合器"></a>混合器</h2><ol>
+<li><p>定義—— <code>@mixin &lt;name&gt; {&lt;content&gt;}</code></p>
+</li>
+<li><p>調用——<code>@include &lt;mixinName&gt;</code></p>
+</li>
+<li><p>混合器傳參</p>
+<pre><code>//定義混合器
+@mixin link-colors($normal, $hover, $visited) {
+  color: $normal;
+  &amp;:hover { color: $hover; }
+  &amp;:visited { color: $visited; }
+}
+//引用混合器
+@include link-colors(blue,red,green)
+//或者
+ @include link-colors(
+      $normal: blue,
+      $visited: green,
+      $hover: red
+  );
+  //為混合器設置默認參數
+  @mixin link-colors($normal,$hover: $normal,$visited: $normal){//$hover,$visited的默認參數爲$normal
+  color: $normal;
+  &amp;:hover { color: $hover; }
+  &amp;:visited { color: $visited; }
+}
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<h2 id="選擇器繼承"><a href="#選擇器繼承" class="headerlink" title="選擇器繼承"></a>選擇器繼承</h2><blockquote>
+<p>繼承的選擇器不要使用後代選擇器，這樣會使編譯後的css中的結構變得很複雜</p>
+</blockquote>
+<ol>
+<li><p>語法——<code>@extend &lt;selector&gt;</code></p>
+</li>
+<li><p>原理</p>
+<pre><code>@extend背后最基本的想法是，如果.seriousError @extend .error， 那么样式表中的任何一处.error都用.error.seriousError这一选择器组进行替换。这就意味着相关样式会如预期那样应用到.error和.seriousError。
+</code></pre></li>
+</ol>
+<h2 id="SassScript"><a href="#SassScript" class="headerlink" title="SassScript"></a>SassScript</h2><ol>
+<li><p>变量定义</p>
+<p><code>$width: 1px</code></p>
+</li>
+<li><p>数据类型（6种）</p>
+<ul>
+<li>数字（1，2，13，10px）</li>
+<li>子符串(有引号字符串，无引号字符串)</li>
+<li>颜色(blue,#ccc,rgba(255,0,0,0.5))</li>
+<li>布尔型 (true,false)</li>
+<li>空值（null）</li>
+<li>数组（list）</li>
+<li>maps 相当于JavaScript中的objec，（key1：value1, key2: value2）</li>
+</ul>
+</li>
+<li><p>控制指令（控制语句）</p>
+<ul>
+<li><code>@if</code></li>
+</ul>
+<pre><code>p{
+    @if 1 + 1 == 2 {border: 1px solid #ccc}
+    @if 5 &lt; 3 {border: 2px dotted}
+    @if null {border: 3px double}
+}
+//结果 p{border: 1px solid}
+</code></pre><ul>
+<li><p><code>@for</code></p>
+<pre><code class="SAS">@for $i from 1 through 3 {
+   .item-#{$si} {width: 2em * $i;}
+}
+</code></pre>
+</li>
+<li><p><code>@each</code></p>
+<pre><code>@each $item in $list {
+   ...code
+}
+//多重变量
+@each $item1, $item2, $item3 in (1 2 3), (4, 5, 6), (7, 8, 9){
+   $item1 + $item2 + $item3;
+}
+//可用上述方法，遍历maps的键和值
+</code></pre></li>
+<li><p>参数变量（类似es6中rest变量）</p>
+<pre><code class="SAS">//扩展运算符`...`
+@mixin box-shadow($shadows...) {
+ -moz-box-shadow: $shadows;
+ -webkit-box-shadow: $shadows;
+ box-shadow: $shadows;
+}
+.shadows {
+ @include box-shadow(0px 4px 5px #666, 2px 6px 10px #999);
+}
+</code></pre>
+</li>
+<li><p>函数定义<code>@function</code></p>
+<pre><code>@function fooname (){
+   @return &quot;hello world&quot;;//@return 定义函数的返回值
+}
+</code></pre></li>
+</ul>
+<h2 id="sass常用函数"><a href="#sass常用函数" class="headerlink" title="sass常用函数"></a>sass常用函数</h2><ul>
+<li>数组函数<ol>
+<li><code>lenght($list)</code>——返回数组的长度</li>
+<li><code>nth($list,$index)</code>——返回指定数组的第几个元素，下表是从1开始的</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+
+        </div>
+        <div class="post-reply">
+            
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE4Ni81NzUz">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+
+<!-- for code block highlight --> 
+<!-- theme.block_highlight -->
+<!-- we do not guarantee the char sequences spell right, usr himself do it -->
+<link rel="stylesheet" href="../../../../css/highlight_rainbow.css">
+<script src="/js/highlight.min.js"></script>
+<script type="text/javascript"> hljs.initHighlightingOnLoad();</script>
+
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © cicades 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../../js/search_core.js"></script>
+<script src="../../../../js/script.js"></script>
+
+</body>
+</html>
