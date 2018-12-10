@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>ES6语法基础 | cicades&#39;blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ES6常用语法1.let 和const命令2.变量的解构//基本语法 let [a, b, c] = [1, 2, 3]; //默认值 let [foo = true] = []; foo // true let [x, y = &amp;#39;b&amp;#39;] = [&amp;#39;a&amp;#39;]; // x=&amp;#39;a&amp;#39;, y=&amp;#39;b&amp;#39; let [x, y = &amp;#39;b&amp;#39;">
+<meta name="keywords" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6语法基础">
+<meta property="og:url" content="http://yoursite.com/2018/12/10/ES6语法基础/index.html">
+<meta property="og:site_name" content="cicades&#39;blogs">
+<meta property="og:description" content="ES6常用语法1.let 和const命令2.变量的解构//基本语法 let [a, b, c] = [1, 2, 3]; //默认值 let [foo = true] = []; foo // true let [x, y = &amp;#39;b&amp;#39;] = [&amp;#39;a&amp;#39;]; // x=&amp;#39;a&amp;#39;, y=&amp;#39;b&amp;#39; let [x, y = &amp;#39;b&amp;#39;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-10T04:30:12.536Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6语法基础">
+<meta name="twitter:description" content="ES6常用语法1.let 和const命令2.变量的解构//基本语法 let [a, b, c] = [1, 2, 3]; //默认值 let [foo = true] = []; foo // true let [x, y = &amp;#39;b&amp;#39;] = [&amp;#39;a&amp;#39;]; // x=&amp;#39;a&amp;#39;, y=&amp;#39;b&amp;#39; let [x, y = &amp;#39;b&amp;#39;">
+  
+    <link rel="alternate" href="/atom.xml" title="cicades&#39;blogs" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="../../../../css/common.css">
+<link rel="stylesheet" href="../../../../css/nav.css">
+<link rel="stylesheet" href="../../../../css/layout.css">
+  
+
+</head>
+</html>
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Cicades</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="../../../../index.html">
+                Home
+            </a>
+            
+            <a class="nav-item" href="../../../../works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="../../../../about">
+                About
+            </a>
+            
+            <a class="nav-item" href="../../../../tags">
+                Tags
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="../../../../index.html">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="../../../../works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="../../../../about">
+                About
+            </a>
+            
+            <a class="nav-item flex-1" href="../../../../tags">
+                Tags
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>ES6语法基础</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="/2018/11/27/hello/dos.png">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Cicades</span>
+                <span class="post-date sub-title">at: 2018-12-10</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/ES6/">ES6</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <h1 id="ES6常用语法"><a href="#ES6常用语法" class="headerlink" title="ES6常用语法"></a>ES6常用语法</h1><h2 id="1-let-和const命令"><a href="#1-let-和const命令" class="headerlink" title="1.let 和const命令"></a>1.let 和const命令</h2><h2 id="2-变量的解构"><a href="#2-变量的解构" class="headerlink" title="2.变量的解构"></a>2.变量的解构</h2><pre><code class="javascript">//基本语法
+let [a, b, c] = [1, 2, 3];
+//默认值
+let [foo = true] = [];
+foo // true
+let [x, y = &#39;b&#39;] = [&#39;a&#39;]; // x=&#39;a&#39;, y=&#39;b&#39;
+let [x, y = &#39;b&#39;] = [&#39;a&#39;, undefined]; // x=&#39;a&#39;, y=&#39;b&#39;
+//对象解构
+let { foo, bar } = { foo: &quot;aaa&quot;, bar: &quot;bbb&quot; };
+foo // &quot;aaa&quot;
+bar // &quot;bbb&quot;
+</code></pre>
+<h2 id="3-字符串的扩展"><a href="#3-字符串的扩展" class="headerlink" title="3.字符串的扩展"></a>3.字符串的扩展</h2><ul>
+<li><p>startsWith()、endsWith(),includes()</p>
+</li>
+<li><p>字符串可以被<code>for...of</code>遍历</p>
+</li>
+<li><p><code>repeat(n)</code>——将原字符串重复n次返回</p>
+</li>
+<li><p>字符串填充</p>
+<ol>
+<li><code>padStart(n,char)</code>——用char进行头部补全，新的字符长度为n</li>
+<li><code>padEnd()</code></li>
+</ol>
+</li>
+<li><p>模板字符串</p>
+<pre><code class="javascript">let x = 1;
+let y = 2;
+
+`${x} + ${y} = ${x + y}`
+// &quot;1 + 2 = 3&quot;
+
+`${x} + ${y * 2} = ${x + y * 2}`
+// &quot;1 + 4 = 5&quot;
+
+let obj = {x: 1, y: 2};
+`${obj.x + obj.y}`
+// &quot;3&quot;
+</code></pre>
+</li>
+<li><p><code>raw()</code>——对字符串中所有的反斜杠进行转义</p>
+</li>
+</ul>
+<h2 id="4-数值的扩展"><a href="#4-数值的扩展" class="headerlink" title="4.数值的扩展"></a>4.数值的扩展</h2><ul>
+<li><p>数值的判断</p>
+<ol>
+<li><code>Number.isFinite()</code>——是否有限，参数不是数值返回false</li>
+<li><code>Number.isNaN()</code>——是否为数字</li>
+</ol>
+</li>
+<li><p>数值转型</p>
+<ol>
+<li><code>Number.parseInt()</code>——转整型</li>
+<li><code>Number.parseFloat（）</code>——转浮点</li>
+<li><code>Number.isInteger()</code>——是否为整数</li>
+</ol>
+</li>
+<li><p>Math对象的扩展</p>
+<ol>
+<li><code>Math.trunc()</code>——去掉一个数的小数部分，返回整数部分</li>
+<li><code>Math.sign()</code>——判断一个数到底是正数（返回1），负数（返回-1）或者是零（返回0）</li>
+<li><code>Math.hypot(a,b,c)</code>——返回所有参数的平方和的平方根</li>
+</ol>
+</li>
+<li><p>指数元素符<code>**</code></p>
+<blockquote>
+<p>该元素符为右结合性</p>
+</blockquote>
+<pre><code class="javascript">// 相当于 2 ** (3 ** 2)
+2 ** 3 ** 2
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="5-函数的扩展"><a href="#5-函数的扩展" class="headerlink" title="5.函数的扩展"></a>5.函数的扩展</h2><ul>
+<li><p>为函数指定默认值</p>
+<pre><code class="javascript">function log (a, b = 9){
+    console.log(a+b);
+}
+log(1)//log:10
+</code></pre>
+</li>
+<li><p>rest参数</p>
+<blockquote>
+<ol>
+<li>用于获取函数的多余参数，rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中</li>
+<li>rest参数后不能使用任何参数</li>
+<li>函数的length属性不包括rest参数，length属性表示，函数参数中没有设置默认值的参数</li>
+</ol>
+</blockquote>
+<pre><code class="javascript">funtion add(...values) {
+    let sum = 0;
+    for (var val of values) {
+        sum += val;
+    }
+    return sum;
+}
+add(2,3,4);
+</code></pre>
+</li>
+<li><p>箭头函数</p>
+<blockquote>
+<p>箭头函数自身没有this，所以在箭头函数中使用this，实际上是引用父级对象的this，所以箭头函数的中的“this“在定义时就固定了</p>
+</blockquote>
+<ol>
+<li>参数 =&gt; 返回值</li>
+<li><code>(x1,x2)=&gt;{ return x1 + x2 }</code> ——缺省参数或者定义多个参数时，需要用括号，输出可以用大括号，加return语句</li>
+</ol>
+<h2 id="6-数组的扩展"><a href="#6-数组的扩展" class="headerlink" title="6.数组的扩展"></a>6.数组的扩展</h2><ul>
+<li><p>扩展运算符——<code>...</code>    将数组拆分成参数序列，相当于rest参数的逆运算，适用于函数调用</p>
+<pre><code class="javascript">//利用扩展运算符求数据中的最大值
+let arr = [11,2,4];
+Math.max(...arr)//11
+//与解构赋值结合起来可以生成数组
+[a,...rest] = [1,2,3,4,5]//rest = [2,3,4,5]
+</code></pre>
+</li>
+<li><p><code>Array.from(arrayLike,callback)</code>——可以将类似数组的对象转换为数组,并可传入回调函数，有选择的将元素放入数组</p>
+</li>
+<li><p><code>Array.of(var1,var2,var3)</code>——将一组值转化为数组，这个方法主要弥补数组的构造函数<code>Array()</code>的不足，因为参数个数的不同会导致<code>Array()</code>的行为的差异</p>
+</li>
+<li><p>数组实例的方法</p>
+<ol>
+<li><p><code>copyWithin()</code>——在当前数组内部，将指定位置的成员复制到其他位置，然后返回当前数组，此方法会修改当前数组</p>
+<pre><code class="javascript">//Array.prototype.copyWithin(target,start = 0, end = this.length)
+[1,2,4,5].copyWithin(0,3)//[4,5,4,5]
+</code></pre>
+</li>
+<li><p><code>find(callback)</code>——返回第一个使回调函数返回true的元素</p>
+<pre><code class="javascript">[1,2,3,4,-5].find(x =&gt; x &lt; 0)//-5
+//find() 可接受三个参数 value,index,arr  类似于forEach(),只不过forEach（）是每个元素执行回调函数
+</code></pre>
+</li>
+<li><p>findIndex()——与find() 用法一样只不过是用来返回符合条件元素的下标</p>
+</li>
+<li><p><code>fill(padEle,start,end)</code>——可以用来填充数组，传入一个参数时，会将数组全部元素的值变为参数的值</p>
+</li>
+<li><p><code>entries(),keys(),values()</code>——返回数组中的键值对，索引，值</p>
+<pre><code class="javascript">for (let index of [&#39;a&#39;, &#39;b&#39;].keys()) {
+  console.log(index);
+}
+// 0
+// 1
+
+for (let elem of [&#39;a&#39;, &#39;b&#39;].values()) {
+  console.log(elem);
+}
+// &#39;a&#39;
+// &#39;b&#39;
+
+for (let [index, elem] of [&#39;a&#39;, &#39;b&#39;].entries()) {
+  console.log(index, elem);
+}
+// 0 &quot;a&quot;
+// 1 &quot;b&quot;
+</code></pre>
+</li>
+<li><p><code>includes()</code>——查询元素，用法同字符串实例的<code>includes()</code></p>
+</li>
+<li><p><code>flat()</code>——将数组中所有的所有的结构扁平化，即将高维数组转化为低维数组，可以向传入参数控制要展开的层数，类似的方法<code>flatMap(callback)</code>——先过滤元素再执行flat()</p>
+</li>
+</ol>
+<hr>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-对象的扩展"><a href="#7-对象的扩展" class="headerlink" title="7.对象的扩展"></a>7.对象的扩展</h2><ul>
+<li><p>属性的简洁表示法，允许直接写入变量</p>
+<pre><code class="javascript">let name = &#39;cicades&#39;;
+let ob = {name};//等价于 let ob = {name: &#39;cicades&#39;};
+let ob1 = {printName() {console.log(&#39;hello world&#39;)}}
+//等价于
+let ob1 = {printName: function() {console.log(&#39;hello world&#39;)}}
+</code></pre>
+</li>
+<li><p>方法的<code>name</code>属性</p>
+<blockquote>
+<p>方法或者函数的<code>name</code>属性可以获得函数或者方法的名字</p>
+</blockquote>
+</li>
+<li><p>对象的扩展运算符<code>...</code></p>
+<ol>
+<li><p>结构赋值</p>
+<pre><code class="javascript">let {x, y, ...z} = {x: 1, y: 2, a: 3, b:4}
+//x = 1
+//y = 2
+//z = {a: 3, b:4}
+//结构赋值的拷贝是浅拷贝，对于复合类型的值，解构赋值拷贝的是这个值得引用
+</code></pre>
+</li>
+<li><p>扩展运算符</p>
+<blockquote>
+<p>对象扩展运算符用于取出参数对象得所有可遍历属性拷贝到当前的对象之中</p>
+</blockquote>
+<pre><code class="javascript">let z = {a: 3, b: 4}
+let n = {...z}
+n//{a: 3, b: 4}
+//合并对象
+let ab = {...a, ...b}//等价于下列式子
+let ab = Object.assign({}, a, b)
+</code></pre>
+</li>
+<li><p><code>in</code>命令</p>
+<pre><code class="javascript">let obj = {name: &#39;cicades&#39;};
+&#39;name&#39; in obj // true
+</code></pre>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="8-对象的新增方法"><a href="#8-对象的新增方法" class="headerlink" title="8.对象的新增方法"></a>8.对象的新增方法</h2><ol>
+<li><p><code>Object.is()</code>——比较两个值是否严格相等，类似于<code>===</code>,不同之处为：</p>
+<pre><code class="javascript">+0 === -0 //true
+NaN === NaN //false
+Object.is(+0, -0) //false
+Object.is(NaN, NaN) //true
+</code></pre>
+</li>
+<li><p><code>Object.assign(target, source1, source2)</code>——用于对象合并，将源对象复制到目标对象（target）</p>
+<blockquote>
+<p>1.Object.assign()  进行的是浅拷贝</p>
+<p>2.源对象的属性值会覆盖目标对象中同名属性的属性值</p>
+</blockquote>
+</li>
+<li><p>返回指定对象所有自身属性<code>Object.getOwnPropertyDescriptors()</code></p>
+<pre><code class="javascript">//Object.getOwnPropertyDescriptor() ES5方法，返回指定对象的某个属性的描述对象
+Object.getOwnPropertyDescriptors(obj)//返回指定对象所有自身属性的描述对象，属性名为键
+</code></pre>
+</li>
+<li><p>获取/设置对象的原型</p>
+<ul>
+<li><p><code>Object.getPrototypeOf(obj)</code></p>
+<blockquote>
+<p>读取指定对象的原型对象</p>
+</blockquote>
+</li>
+<li><p><code>Object.setProrotypeof(obj,proto)</code></p>
+<blockquote>
+<p>将proto设置为obj对象的原型</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>遍历对象</p>
+<ol>
+<li><p><code>Object.keys(obj)</code>——返回参数对象所有可遍历属性的键名所构成的数组</p>
+</li>
+<li><p><code>Object.values()</code>——返回参数对象所有可遍历属性的值所构成的数组</p>
+<blockquote>
+<p>//参数为字符串时，会返回各个字符组成的一个数组</p>
+<p>Object.values(‘foo’)//[‘f’, ‘o’, ‘o ‘]</p>
+</blockquote>
+</li>
+<li><p><code>Object.entries()</code>——返回参数对象</p>
+</li>
+<li><p><code>Object.fromEntries()</code>——<code>Object.entries()</code>的逆操作，用于将一个键值对数组转换为对象</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="9-Symbol"><a href="#9-Symbol" class="headerlink" title="9.Symbol"></a>9.Symbol</h2><blockquote>
+<p>Symbol是一种新的原始数据类型，表示独一无二的值，它是js中第七种数据类型：null, undefined, string, number, boolean, array, object, Symbol；Symbol的最为属性名，不可被遍历</p>
+</blockquote>
+<ul>
+<li><p>创建<code>Symbol</code></p>
+<pre><code class="javascript">let s = Symbol();//可以为Symbol函数传入一个字符串，用来标识symbol
+typeof s //&quot;symbol&quot;
+</code></pre>
+</li>
+<li><p><code>Symbol.for(),Symbol.keyFor()</code></p>
+<blockquote>
+<ol>
+<li><code>Symbol.for</code>接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol 值。如果有，就返回这个 Symbol 值，否则就新建并返回一个以该字符串为名称的 Symbol 值。</li>
+<li><code>Symbol.keyFor</code>方法返回一个已登记的 Symbol 类型值的<code>key</code>。</li>
+</ol>
+</blockquote>
+<pre><code class="javascript">let s1 = Symbol.for(&#39;foo&#39;);
+Symbol.keyFor(s1)//&quot;foo&quot;
+</code></pre>
+</li>
+</ul>
+<h2 id="10-Set和Map数据结构"><a href="#10-Set和Map数据结构" class="headerlink" title="10.Set和Map数据结构"></a>10.Set和Map数据结构</h2><ul>
+<li><p><code>Set</code></p>
+<pre><code class="javascript">//Set本身就是一个构造函数，用来生成Set数据结构，类似于数组，但成员的值都是唯一的
+const s = new Set();
+[1,2,3,1,2,3].forEach(x =&gt; s.add(x));//add(ele)向Set结构加入成员
+for (let i of s) {
+  console.log(i)//1,2,3
+}
+//Set构造函数可接受数组作为参数
+[...new Set(array)]//去除数组中重复的元素
+</code></pre>
+</li>
+<li><p>Set实例的属性和方法</p>
+<ol>
+<li>属性<ul>
+<li><code>size</code>——返回<code>Set</code>实例的成员总数</li>
+</ul>
+</li>
+<li>方法<ul>
+<li><code>add(value)</code>——添加某个值，返回Set结构的本身</li>
+<li><code>delete(value)</code>——删除某个值，返回布尔值</li>
+<li><code>has(value)</code>——是否拥有某值</li>
+<li><code>clear()</code>——清除所有成员，没有返回值</li>
+</ul>
+</li>
+<li>遍历操作</li>
+</ol>
+<blockquote>
+<p>keys(), values(), entries(), forEach();set的遍历顺序就是插入时的顺序</p>
+</blockquote>
+</li>
+<li><p><code>WeakSet</code></p>
+<blockquote>
+<p><code>WeakSet结构与Set类似也是不重复的值的集合，但WeakSet的成员只能是对象</code></p>
+</blockquote>
+</li>
+<li><p><code>Map</code></p>
+<blockquote>
+<p>Map类似于对象，也是键值对的集合，但“键”的范围不限于字符串，各种类型的值都可当作键</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li>属性和操作方法<ul>
+<li><code>size</code>——属性，返回Map结构的成员总数</li>
+<li><code>set(key,value)</code>——设置键值对，返回整个Map结构</li>
+<li><code>get(key)</code>——读取key对应的键值</li>
+<li><code>has(key)</code>——判断是否存在key</li>
+<li><code>delete(key)</code>——删除某个键</li>
+<li><code>clear()</code>——清除所有成员</li>
+</ul>
+</li>
+<li><p>遍历方法</p>
+<blockquote>
+<p>参考Set的遍历方法</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><p><code>WeakMap</code></p>
+<blockquote>
+<p><code>WeakMap</code>只接受对象作为成员，<code>WeakMap</code>应用的典型场合就是DOM节点作为键名，将需要与DOM对象绑定的对象作为键值，因为<code>WeakMap</code>对键名进行虚引用，所以当DOM对象内存被回收，<code>WeakMap</code>中对应的键值对也会失效</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="11-Proxy"><a href="#11-Proxy" class="headerlink" title="11.Proxy"></a>11.Proxy</h2><blockquote>
+<p>Proxy属于一种元编程（meta programming），即对编程程序进行编程；Proxy原意指：代理人；代理物；代表权</p>
+</blockquote>
+<ul>
+<li>应用实例——<code>get</code>(更多拦截方法参考文档)</li>
+</ul>
+<pre><code class="javascript">var person = {
+  name: &quot;张三&quot;
+};
+var proxy = new Proxy(person, {
+  get: function(target, property) {
+    if (property in target) {
+      return target[property];
+    } else {
+      throw new ReferenceError(&quot;Property \&quot;&quot; + property + &quot;\&quot; does not exist.&quot;);
+    }
+  }
+});
+proxy.name // &quot;张三&quot;
+proxy.age // 抛出一个错误
+</code></pre>
+<h2 id="12-Reflect"><a href="#12-Reflect" class="headerlink" title="12.Reflect"></a>12.Reflect</h2><blockquote>
+<p>为对象开发出的一套API</p>
+</blockquote>
+<h2 id="13-Promise"><a href="#13-Promise" class="headerlink" title="13.Promise"></a>13.Promise</h2><blockquote>
+<p>Promise是异步编程的一种解决方案；Promise是一个对象，从它可以获得异步操作的消息；Promise提供统一的API，各种异步操作都可以用同样的方法进行处理</p>
+</blockquote>
+<pre><code class="javascript">//Promise对象实现Ajax操作
+const getJSON = function(url) {
+  const promise = new Promise(function(resolve, reject){
+    const handler = function() {
+      if (this.readyState !== 4) {
+        return;
+      }
+      if (this.status === 200) {
+        resolve(this.response);
+      } else {
+        reject(new Error(this.statusText));
+      }
+    };
+    const client = new XMLHttpRequest();
+    client.open(&quot;GET&quot;, url);
+    client.onreadystatechange = handler;
+    client.responseType = &quot;json&quot;;
+    client.setRequestHeader(&quot;Accept&quot;, &quot;application/json&quot;);
+    client.send();
+
+  });
+
+  return promise;
+};
+
+getJSON(&quot;/posts.json&quot;).then(function(json) {
+  console.log(&#39;Contents: &#39; + json);
+  // 如果在此回调函数中返回`promise`对象，即可实现链式编程，即在`then后面`再次调用`then(callback)`
+}, function(error) {
+  console.error(&#39;出错了&#39;, error);
+});
+</code></pre>
+
+        </div>
+        <div class="post-reply">
+            
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE4Ni81NzUz">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+
+<!-- for code block highlight --> 
+<!-- theme.block_highlight -->
+<!-- we do not guarantee the char sequences spell right, usr himself do it -->
+<link rel="stylesheet" href="../../../../css/highlight_rainbow.css">
+<script src="/js/highlight.min.js"></script>
+<script type="text/javascript"> hljs.initHighlightingOnLoad();</script>
+
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © cicades 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../../js/search_core.js"></script>
+<script src="../../../../js/script.js"></script>
+
+</body>
+</html>
