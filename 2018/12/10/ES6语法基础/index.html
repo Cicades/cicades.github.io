@@ -8,19 +8,19 @@
   
   <title>ES6语法基础 | cicades&#39;blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ES6常用语法1.let 和const命令2.变量的解构//基本语法 let [a, b, c] = [1, 2, 3]; //默认值 let [foo = true] = []; foo // true let [x, y = &amp;#39;b&amp;#39;] = [&amp;#39;a&amp;#39;]; // x=&amp;#39;a&amp;#39;, y=&amp;#39;b&amp;#39; let [x, y = &amp;#39;b&amp;#39">
+  <meta name="description" content="ES6常用语法ES5扩展对象的扩展 对象方法的扩展  Object.create(obj[, options])——以对象为原型创建对象并返回  Object.defineProperties(obj1[, options]),为对象添加属性   var obj = {username: &amp;#39;hyf&amp;#39;, age: 20} var obj1 = {} obj1 = Object.cr">
 <meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6语法基础">
 <meta property="og:url" content="http://yoursite.com/2018/12/10/ES6语法基础/index.html">
 <meta property="og:site_name" content="cicades&#39;blogs">
-<meta property="og:description" content="ES6常用语法1.let 和const命令2.变量的解构//基本语法 let [a, b, c] = [1, 2, 3]; //默认值 let [foo = true] = []; foo // true let [x, y = &amp;#39;b&amp;#39;] = [&amp;#39;a&amp;#39;]; // x=&amp;#39;a&amp;#39;, y=&amp;#39;b&amp;#39; let [x, y = &amp;#39;b&amp;#39">
+<meta property="og:description" content="ES6常用语法ES5扩展对象的扩展 对象方法的扩展  Object.create(obj[, options])——以对象为原型创建对象并返回  Object.defineProperties(obj1[, options]),为对象添加属性   var obj = {username: &amp;#39;hyf&amp;#39;, age: 20} var obj1 = {} obj1 = Object.cr">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/12/10/ES6语法基础/1.jpg">
-<meta property="og:updated_time" content="2018-12-10T11:26:53.802Z">
+<meta property="og:updated_time" content="2018-12-12T15:34:39.543Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6语法基础">
-<meta name="twitter:description" content="ES6常用语法1.let 和const命令2.变量的解构//基本语法 let [a, b, c] = [1, 2, 3]; //默认值 let [foo = true] = []; foo // true let [x, y = &amp;#39;b&amp;#39;] = [&amp;#39;a&amp;#39;]; // x=&amp;#39;a&amp;#39;, y=&amp;#39;b&amp;#39; let [x, y = &amp;#39;b&amp;#39">
+<meta name="twitter:description" content="ES6常用语法ES5扩展对象的扩展 对象方法的扩展  Object.create(obj[, options])——以对象为原型创建对象并返回  Object.defineProperties(obj1[, options]),为对象添加属性   var obj = {username: &amp;#39;hyf&amp;#39;, age: 20} var obj1 = {} obj1 = Object.cr">
 <meta name="twitter:image" content="http://yoursite.com/2018/12/10/ES6语法基础/1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="cicades&#39;blogs" type="application/atom+xml">
@@ -163,7 +163,59 @@
         </div>
         <div class="content" style="overflow: auto">
             <p><img src="/2018/12/10/ES6语法基础/1.jpg" alt="post-cover"></p>
-<h1 id="ES6常用语法"><a href="#ES6常用语法" class="headerlink" title="ES6常用语法"></a>ES6常用语法</h1><h2 id="1-let-和const命令"><a href="#1-let-和const命令" class="headerlink" title="1.let 和const命令"></a>1.let 和const命令</h2><h2 id="2-变量的解构"><a href="#2-变量的解构" class="headerlink" title="2.变量的解构"></a>2.变量的解构</h2><pre><code class="javascript">//基本语法
+<h1 id="ES6常用语法"><a href="#ES6常用语法" class="headerlink" title="ES6常用语法"></a>ES6常用语法</h1><h2 id="ES5扩展"><a href="#ES5扩展" class="headerlink" title="ES5扩展"></a>ES5扩展</h2><h3 id="对象的扩展"><a href="#对象的扩展" class="headerlink" title="对象的扩展"></a>对象的扩展</h3><ul>
+<li><p>对象方法的扩展</p>
+<ul>
+<li><p><code>Object.create(obj[, options])</code>——以对象为原型创建对象并返回</p>
+</li>
+<li><p><code>Object.defineProperties(obj1[, options])</code>,为对象添加属性</p>
+</li>
+</ul>
+<pre><code class="javascript">var obj = {username: &#39;hyf&#39;, age: 20}
+var obj1 = {}
+obj1 = Object.create(obj, {
+  //指定新增的属性
+  sex: {
+    value: &#39;male&#39;,//指定属性值
+    writable: true,//是否可写
+    configurable: true,//是否可删除
+    enumerable: true//是否可被枚举（遍历）
+  }
+  })
+
+Object.defineProperties(obj1, {
+  fullName: {//新增fullName属性，并添加配置
+    get: function () { //obj1.fullName 会默认调用此函数
+      return this.firstName + &#39; &#39; + this.lastName
+    }
+    set: function (data) {//obj1.fullName = &#39;hyf cicades&#39; 会默认调用此函数并将&#39;hyf cicades&#39;作为参数传入
+      let name = data.split(&#39; &#39;)//[&#39;hyf&#39;, &#39;cicades&#39;]
+      this.firsName = name[0] //&#39;hyf&#39;
+      this.lastName = name[1] //&#39;cicades&#39;
+    }
+  }
+  })
+</code></pre>
+<ul>
+<li><p><code>set function</code>和<code>get function</code></p>
+<blockquote>
+<p>类似于上述中<code>setter</code>和<code>getter</code></p>
+</blockquote>
+<pre><code class="javascript">  let person = {
+    fullName: &#39;cicades hyf&#39;,
+    get firstName(){
+      return this.fullName.split(&#39; &#39;).[0]
+    }
+    set firstName(data) {
+      this.firstName = data
+    }
+  }
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-let-和const命令"><a href="#1-let-和const命令" class="headerlink" title="1.let 和const命令"></a>1.let 和const命令</h2><h2 id="2-变量的解构"><a href="#2-变量的解构" class="headerlink" title="2.变量的解构"></a>2.变量的解构</h2><pre><code class="javascript">//基本语法
 let [a, b, c] = [1, 2, 3];
 //默认值
 let [foo = true] = [];
@@ -265,7 +317,7 @@ add(2,3,4);
 </li>
 <li><p>箭头函数</p>
 <blockquote>
-<p>箭头函数自身没有this，所以在箭头函数中使用this，实际上是引用父级对象的this，所以箭头函数的中的“this“在定义时就固定了</p>
+<p>箭头函数自身没有this，所以在箭头函数中使用this，实际上是引用父级对象的this，所以箭头函数的中的“this“在定义时就固定了,判断箭头函数’this’的指向的一个简单方法是，看它定义时是否被包裹在另一个函数内（函数内部会产生跨级作用域），如果有则箭头函数的‘this’和外层保持一致，否则就是‘window ’</p>
 </blockquote>
 <ol>
 <li>参数 =&gt; 返回值</li>
@@ -435,15 +487,21 @@ typeof s //&quot;symbol&quot;
 </code></pre>
 </li>
 <li><p><code>Symbol.for(),Symbol.keyFor()</code></p>
-<blockquote>
 <ol>
 <li><code>Symbol.for</code>接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol 值。如果有，就返回这个 Symbol 值，否则就新建并返回一个以该字符串为名称的 Symbol 值。</li>
-<li><code>Symbol.keyFor</code>方法返回一个已登记的 Symbol 类型值的<code>key</code>。</li>
+<li><code>Symbol.keyFor</code>方法返回一个已登记的 Symbol 类型值的<code>key</code></li>
 </ol>
-</blockquote>
 <pre><code class="javascript">let s1 = Symbol.for(&#39;foo&#39;);
 Symbol.keyFor(s1)//&quot;foo&quot;
 </code></pre>
+<ul>
+<li><code>Symbol</code>的应用</li>
+</ul>
+<ul>
+<li>作为对象的属性名（不可被遍历）</li>
+<li>定义常量</li>
+<li>作为唯一标识(例如：用作jsonp中的唯一的回调函数的函数名)</li>
+</ul>
 </li>
 </ul>
 <h2 id="10-Set和Map数据结构"><a href="#10-Set和Map数据结构" class="headerlink" title="10.Set和Map数据结构"></a>10.Set和Map数据结构</h2><ul>
@@ -570,6 +628,229 @@ getJSON(&quot;/posts.json&quot;).then(function(json) {
   console.error(&#39;出错了&#39;, error);
 });
 </code></pre>
+<h2 id="14-Iterator"><a href="#14-Iterator" class="headerlink" title="14.Iterator"></a>14.Iterator</h2><ul>
+<li><p>模拟<code>Iterator</code>接口</p>
+<pre><code class="javascript"> let myIterator = () =&gt; {
+  let index = 0
+  return {
+    next (arr) {
+      return {
+        value: arr[index++],
+        done: arr.length &gt;= index ? false : true
+      }
+    }
+  }
+ }
+</code></pre>
+</li>
+<li><p>已部署<code>Iterator</code>的数据结构或者数据类型</p>
+<blockquote>
+<p>可以使用for…of..循环遍历】</p>
+</blockquote>
+<ul>
+<li>数组</li>
+<li>字符串</li>
+<li>arguments(伪数组)</li>
+<li>Set容器</li>
+<li>Map容器</li>
+<li>NodeList对象</li>
+</ul>
+</li>
+<li><p>为对象部署<code>Iterator</code></p>
+<pre><code class="javascript">let test = {
+  0: &#39;hell0&#39;,
+  1: &#39;world&#39;,
+  [Symbol.iterator] () {
+    let index = 0
+    const that = this
+    return {
+      next () {
+      return {
+        value: that[index++],
+        done: that.length &gt;= index ? false : true
+      }
+    }
+    }
+  }
+}
+</code></pre>
+</li>
+<li><p>为类似数组的对象(以数字为属性值,且存在<code>length</code>属性)部署遍历接口</p>
+<pre><code class="javascript">  let iterable = {
+    0: &#39;a&#39;,
+    1: &#39;b&#39;,
+    2: &#39;c&#39;,
+    length: 3,
+    [Symbol.iterator]: Array.prototype[Symbol.iterator]
+  };
+  for (let item of iterable) {
+    console.log(item); // &#39;a&#39;, &#39;b&#39;, &#39;c&#39;
+  }
+</code></pre>
+</li>
+</ul>
+<h2 id="15-Generator指针生成器-遍历器生成器"><a href="#15-Generator指针生成器-遍历器生成器" class="headerlink" title="15.Generator指针生成器(遍历器生成器)"></a>15.<code>Generator</code>指针生成器(遍历器生成器)</h2><ul>
+<li><p>语法</p>
+<pre><code class="javascripta">  let generator = (function* (){
+    let v = yield &#39;hello&#39; //v = 666
+    yield &#39;world&#39;
+    return &#39;haha&#39;
+    })()
+  generator.next() //{value: &#39;hello&#39;, done: &#39;false&#39;}
+  generator.next(666) //{value: &#39;world&#39;, done: &#39;false&#39;}
+  generator.next() //{value: &#39;haha&#39;, done: &#39;true&#39;}
+
+</code></pre>
+</li>
+<li><p>应用</p>
+<ul>
+<li><p>部署<code>Iterator</code></p>
+<pre><code class="javascript">  let test = {}
+  test[Symbol.iterator] = function* () {
+    yield &#39;hello&#39;
+    yield &#39;world&#39;
+  }
+  for(let v of test) {
+    console.log(v)
+  }//&#39;hello&#39; &#39;world&#39;
+</code></pre>
+</li>
+<li><p>分布发送响应</p>
+<pre><code class="javascript">  //需求：发送news请求之后再发送query
+  function getNews(url) {
+    $.get(url, function (data) {
+        console.log(data)
+        let url = &#39;http://localhost:3000/query&#39;
+        SX.next(url) //第二个next 传入url将作为第一次nyield的返回值，请求query
+      })
+  }
+
+  //定义Generator
+  function* generator () {
+    let url = yield getNews(&#39;http;//localhost:3000/news&#39;)
+    yield getNews(url)
+  }
+  let SX = generator()
+  SX.next() //请求news
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="16-async函数-源自ES2017"><a href="#16-async函数-源自ES2017" class="headerlink" title="16.async函数(源自ES2017)"></a>16.<code>async</code>函数(源自ES2017)</h2><blockquote>
+<p>async是generato的语法糖，即是它的升级版</p>
+</blockquote>
+<ul>
+<li><p>语法</p>
+<pre><code class="javascript">  let test = (ms, value) =&gt; {
+    return new Promise(resolve =&gt; {
+      setTimeout(resolve, ms, value)
+    })
+  }
+
+  //使用async 关键字定义async函数
+  async function foo() {
+    console.log(&#39;开始执行 &#39;)
+
+     //使用await关键字执行操作，await后面一般跟着promise对象，实现异步操作
+     //且await语句的返回值，是其后面的promise对象中为resolve传递的参数
+    let value = await test(1000)
+
+    console.log(&#39;执行结束&#39;)
+
+     //async函数执行的返回值是promise对象，所以可以使用then进行下一步操作，而它内部使用return返回的值会作为resolve的参数
+    return &#39;hello world&#39;
+  }
+
+  foo().then(console.log) // 执行结果： 立即输出&#39;开始执行&#39;,1s后输出&#39;执行结束&#39;和&#39;hello world&#39;
+</code></pre>
+<h2 id="17-class"><a href="#17-class" class="headerlink" title="17.class"></a>17.<code>class</code></h2><blockquote>
+<p>与java类的语法很相似</p>
+</blockquote>
+</li>
+<li><p>语法</p>
+<pre><code class="javascript">  class Person {
+    //构造函数
+    constructor (name, age) {
+      this.name = name
+      this.age = age
+    }
+
+    //方法，默认放在原型中
+    sayHi () {
+      console.log(`I am ${this.name}`)
+    }
+  }
+
+  //定义student类继承person类
+  class Student extends Person {
+    constructor (name, age, school) {
+      super(name, age) //使用super关键字调用父类的构造函数
+      this.school = school //添加自己的属性
+    }
+
+    //方法重写
+    sayHi () {
+      console.log(`I am ${this.name}, and I am studying in ${this.school}`)
+    }
+  }
+
+  let stu = new Student(&#39;cicades&#39;, 20, &#39;ccnu&#39;)
+  stu.sayHi()
+</code></pre>
+</li>
+</ul>
+<h2 id="18-数据拷贝"><a href="#18-数据拷贝" class="headerlink" title="18.数据拷贝"></a>18.数据拷贝</h2><ul>
+<li><p>常见数据拷贝方法</p>
+<ul>
+<li>等号赋值 //浅拷贝</li>
+<li>Object.assign() //浅拷贝</li>
+<li>Array.prototype.concat() //浅拷贝</li>
+<li>Array.prototype.slice() //浅拷贝</li>
+<li>JSON.parse(JSON.stringify()) //深拷贝 </li>
+</ul>
+</li>
+<li><p>深拷贝</p>
+<ul>
+<li><p>检测数据类型的方法</p>
+<ul>
+<li><code>typeof</code>——能够返回的数据类型:String, Null, Object, Undifined, Number, Function</li>
+<li><code>Object.prototype.toString.call(data)</code>——能够返回所有数据类型</li>
+</ul>
+</li>
+<li><p>深度拷贝的实现</p>
+<pre><code class="javascript">  //深拷贝
+  //定义一个判断类型的函数
+  let check = target =&gt; Object.prototype.toString.call(target).slice(8, -1)
+  let clone = target =&gt; {
+    let dataType = check(target)
+    let res = null
+    if (dataType != &#39;Array&#39; &amp;&amp; dataType !==&#39;Object&#39;) {
+      res = target
+      return res
+    }
+    if (dataType === &#39;Array&#39;) {
+      res = []
+    } else if (dataType === &#39;Object&#39;) {
+      res = {}
+    }
+    for (let key in target) {
+      //遇到数组、对象则需再次进行clone，函数可以当作简单数据类型
+      res[key] = clone(target[key])
+    }
+    return res
+  }
+</code></pre>
+<h2 id="ES6项目"><a href="#ES6项目" class="headerlink" title="ES6项目"></a>ES6项目</h2></li>
+</ul>
+</li>
+</ul>
+<h3 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h3><blockquote>
+<p>项目主要分为三个大模块分别是：app(页面交互)，tasks(任务流控制)、server(数据提供)</p>
+</blockquote>
+<ul>
+<li><code>express</code>脚手架的使用（<a href="http://www.expressjs.com.cn/starter/generator.html" target="_blank" rel="noopener">使用教程</a></li>
+</ul>
 
         </div>
         <div class="post-reply">

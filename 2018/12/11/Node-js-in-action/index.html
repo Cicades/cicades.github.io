@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="full-height">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bulma/0.4.1/css/bulma.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  
+  <title>Node.js in action | cicades&#39;blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="《Node.js in action》学习笔记Node.js 编程基础模块系统 模块导入导出     模块的查找      异步编程 用回调函数处理单次事件  用事件发射器处理重复性事件    eventEmitter.once(callback)-处理响应只发生一次的事件；eventEmitter.on(callback)-处理持续发生事件  var EventEmitter = require">
+<meta name="keywords" content="Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js in action">
+<meta property="og:url" content="http://yoursite.com/2018/12/11/Node-js-in-action/index.html">
+<meta property="og:site_name" content="cicades&#39;blogs">
+<meta property="og:description" content="《Node.js in action》学习笔记Node.js 编程基础模块系统 模块导入导出     模块的查找      异步编程 用回调函数处理单次事件  用事件发射器处理重复性事件    eventEmitter.once(callback)-处理响应只发生一次的事件；eventEmitter.on(callback)-处理持续发生事件  var EventEmitter = require">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/12/11/Node-js-in-action/.Node-js-in-action/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/12/11/Node-js-in-action/Node-js-in-action/2.png">
+<meta property="og:updated_time" content="2018-12-11T11:17:19.831Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js in action">
+<meta name="twitter:description" content="《Node.js in action》学习笔记Node.js 编程基础模块系统 模块导入导出     模块的查找      异步编程 用回调函数处理单次事件  用事件发射器处理重复性事件    eventEmitter.once(callback)-处理响应只发生一次的事件；eventEmitter.on(callback)-处理持续发生事件  var EventEmitter = require">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/11/Node-js-in-action/.Node-js-in-action/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="cicades&#39;blogs" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+  <link rel="stylesheet" href="../../../../css/common.css">
+<link rel="stylesheet" href="../../../../css/nav.css">
+<link rel="stylesheet" href="../../../../css/layout.css">
+  
+
+</head>
+</html>
+<body>
+  <header id="navbar" class="overflow-hidden">
+  <div class="container">
+    <nav class="nav">
+         <div class="nav-left">
+            <a href="/" class="nav-item" style="font-size: 20px;">
+              <span class="logo">Cicades</span>'s Blog
+            </a>
+         </div>
+        <div class="nav-center is-hidden position-relative" id="search_container">
+            <div class="nav-item full-width full-height">
+                <i class="fa fa-search has-padding" aria-hidden="true"></i>
+                <input type="text" id="search_input" class="search-input full-height full-width" placeholder="Search post" autofocus>
+                <i id="close_search" class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div id="search_result"></div>
+        </div>
+        <div class="nav-right nav-menu">
+            <a class="nav-item" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </a>
+            
+            <a class="nav-item" href="../../../../index.html">
+                Home
+            </a>
+            
+            <a class="nav-item" href="../../../../works">
+                My Works
+            </a>
+            
+            <a class="nav-item" href="../../../../about">
+                About
+            </a>
+            
+            <a class="nav-item" href="../../../../tags">
+                Tags
+            </a>
+            
+        </div>
+        <span class="nav-toggle" id="navMenuDropdown">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+        <div class="navbar-menu position-absolute full-width content-box is-hidden-desktop is-flex flex-column center" style="top: 100%;">
+            
+            <a class="nav-item flex-1" href="../../../../index.html">
+                Home
+            </a>
+            
+            <a class="nav-item flex-1" href="../../../../works">
+                My Works
+            </a>
+            
+            <a class="nav-item flex-1" href="../../../../about">
+                About
+            </a>
+            
+            <a class="nav-item flex-1" href="../../../../tags">
+                Tags
+            </a>
+            
+        </div>
+    </nav>
+  </div>
+</header>
+
+  <div id="main-wrap" class="position-relative" style="margin-top: 55px;">
+      <div class="main-inner-content">
+          <!--博文页面-->
+
+<style>
+    .header-box {
+        height: 370px;
+        filter: blur(10px);
+        background-size: cover;
+        background-color: lightsteelblue;
+    }
+
+    .post-box {
+        padding: 15px;
+        padding-top: 60px;
+        min-height: 80vh;
+        margin-top: -200px;
+        border-radius: 4px;
+        background-color: rgba(255,255,255,.8);
+    }
+
+    .post-avatar {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+    }
+
+    .flow-chart {
+        text-align: center;
+    }
+
+    img[alt="post-cover"] {
+        display: none;
+    }
+</style>
+<header>
+    <div id="header_box" class="header-box"></div>
+</header>
+<section>
+    <div class="container post-box">
+        <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
+            <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
+                <strong>Node.js in action</strong>
+            </h1>
+            
+            <div class="is-flex align-center">
+                <img class="post-avatar" src="/2018/11/27/hello/dos.png">
+                <span style="padding:0 10px;"> <span class="sub-title">By</span> Cicades</span>
+                <span class="post-date sub-title">at: 2018-12-11</span>
+            </div>
+            
+                <div>
+                    
+                         <a class="tag is-post-tag" href="/tags/Node-js/">Node.js</a>
+                    
+                </div>
+            
+        </div>
+        <div class="content" style="overflow: auto">
+            <h1 id="《Node-js-in-action》学习笔记"><a href="#《Node-js-in-action》学习笔记" class="headerlink" title="《Node.js in action》学习笔记"></a>《Node.js in action》学习笔记</h1><h2 id="Node-js-编程基础"><a href="#Node-js-编程基础" class="headerlink" title="Node.js 编程基础"></a>Node.js 编程基础</h2><h3 id="模块系统"><a href="#模块系统" class="headerlink" title="模块系统"></a>模块系统</h3><ul>
+<li><p>模块导入导出</p>
+<p>  <img src="/2018/12/11/Node-js-in-action/.Node-js-in-action/1.png" alt="模块导入导出"></p>
+</li>
+<li><p>模块的查找</p>
+<p>  <img src="/2018/12/11/Node-js-in-action/./Node-js-in-action/2.png" alt="模块的查找"></p>
+</li>
+</ul>
+<h3 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h3><ul>
+<li><p>用回调函数处理单次事件</p>
+</li>
+<li><p>用事件发射器处理重复性事件</p>
+</li>
+</ul>
+<blockquote>
+<p>eventEmitter.once(callback)-处理响应只发生一次的事件；eventEmitter.on(callback)-处理持续发生事件</p>
+</blockquote>
+<pre><code class="javascript">var EventEmitter = require(&#39;event&#39;).EventEmitter
+//创建事件发射器的实例
+var channel = new EventEmitter()
+
+//绑定名为&#39;join&#39;的事件，并添加callback,也可用addEventListener来注册事件
+channel.on(&#39;join&#39;, () =&gt; console.log(&#39;welcom&#39;))
+channel.on(&#39;join&#39;, () =&gt; console.log(&#39;to Node.js&#39;))
+//触发事件
+channel.emit(&#39;join&#39;)
+
+//移除指定监听器的某个事件,如：移除join的第二个事件
+channel.removeListener(&#39;join&#39;, () =&gt; console.log(&#39;to Node.js&#39;))
+
+//移除指定监听器的所有事件,移除&#39;join&#39;的所有事件
+channel.removeAllListeners(&#39;join&#39;)
+
+//获取某类型监听器的监听事件长度
+channel.listener(&#39;join&#39;).length
+
+//扩展事件发生器上的监听器数量
+channel.setMaxListeners(50)
+</code></pre>
+
+        </div>
+        <div class="post-reply">
+            
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTE4Ni81NzUz">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+            
+            
+        </div>
+    </div>
+</section>
+<script>
+    // 获取第一张图, 用以当封面背景图
+    var img = document.querySelectorAll('img')[1]
+
+    if (img) {
+        var header_box = document.querySelector('#header_box')
+        header_box.style.backgroundImage = 'url('+ img.src +')'
+    }
+</script>
+
+<!-- for code block highlight --> 
+<!-- theme.block_highlight -->
+<!-- we do not guarantee the char sequences spell right, usr himself do it -->
+<link rel="stylesheet" href="../../../../css/highlight_rainbow.css">
+<script src="/js/highlight.min.js"></script>
+<script type="text/javascript"> hljs.initHighlightingOnLoad();</script>
+
+      </div>
+  </div>
+  <style>
+  #footer {
+    min-height: 10vh;
+    background: black;
+    color: #fff;
+  }
+
+  #footer a {
+    color: #e1e1e1;
+  }
+</style>
+<footer id="footer" class="has-text-centered is-flex center">
+  <div class="container has-padding">
+    <div>
+      <div>
+        <!--请您保留作者署名, 主题制作来之不易-->
+        Theme by <a href="http://haojen.github.io/">Haojen Ma</a>
+        <br>
+        Copyright © cicades 2018
+        <br>
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../../js/search_core.js"></script>
+<script src="../../../../js/script.js"></script>
+
+</body>
+</html>
