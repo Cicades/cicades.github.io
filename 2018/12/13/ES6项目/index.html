@@ -6,23 +6,20 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
   
-  <title>Node.js in action | cicades&#39;blogs</title>
+  <title>ES6项目 | cicades&#39;blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="《Node.js in action》学习笔记1.Node.js 编程基础1.1模块系统 模块导入导出     模块的查找      1.2异步编程 用回调函数处理单次事件  用事件发射器处理重复性事件    eventEmitter.once(callback)-处理响应只发生一次的事件；eventEmitter.on(callback)-处理持续发生事件  var EventEmitter =">
-<meta name="keywords" content="Node.js">
+  <meta name="description" content="ES6项目项目构建 项目主要分为三个大模块分别是：app(页面交互)，tasks(任务流控制)、server(数据提供)   express脚手架的使用（使用教程">
+<meta name="keywords" content="js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node.js in action">
-<meta property="og:url" content="http://yoursite.com/2018/12/11/Node-js-in-action/index.html">
+<meta property="og:title" content="ES6项目">
+<meta property="og:url" content="http://yoursite.com/2018/12/13/ES6项目/index.html">
 <meta property="og:site_name" content="cicades&#39;blogs">
-<meta property="og:description" content="《Node.js in action》学习笔记1.Node.js 编程基础1.1模块系统 模块导入导出     模块的查找      1.2异步编程 用回调函数处理单次事件  用事件发射器处理重复性事件    eventEmitter.once(callback)-处理响应只发生一次的事件；eventEmitter.on(callback)-处理持续发生事件  var EventEmitter =">
+<meta property="og:description" content="ES6项目项目构建 项目主要分为三个大模块分别是：app(页面交互)，tasks(任务流控制)、server(数据提供)   express脚手架的使用（使用教程">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/12/11/Node-js-in-action/.Node-js-in-action/1.png">
-<meta property="og:image" content="http://yoursite.com/2018/12/11/Node-js-in-action/Node-js-in-action/2.png">
-<meta property="og:updated_time" content="2018-12-13T03:43:42.443Z">
+<meta property="og:updated_time" content="2018-12-13T02:40:24.435Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node.js in action">
-<meta name="twitter:description" content="《Node.js in action》学习笔记1.Node.js 编程基础1.1模块系统 模块导入导出     模块的查找      1.2异步编程 用回调函数处理单次事件  用事件发射器处理重复性事件    eventEmitter.once(callback)-处理响应只发生一次的事件；eventEmitter.on(callback)-处理持续发生事件  var EventEmitter =">
-<meta name="twitter:image" content="http://yoursite.com/2018/12/11/Node-js-in-action/.Node-js-in-action/1.png">
+<meta name="twitter:title" content="ES6项目">
+<meta name="twitter:description" content="ES6项目项目构建 项目主要分为三个大模块分别是：app(页面交互)，tasks(任务流控制)、server(数据提供)   express脚手架的使用（使用教程">
   
     <link rel="alternate" href="/atom.xml" title="cicades&#39;blogs" type="application/atom+xml">
   
@@ -146,67 +143,28 @@
     <div class="container post-box">
         <div class="content post-title is-flex center flex-column" style="margin-bottom: 70px; overflow: auto;">
             <h1 class="has-text-centered" style="padding-bottom: 10px; border-bottom: 3px solid #fff">
-                <strong>Node.js in action</strong>
+                <strong>ES6项目</strong>
             </h1>
             
             <div class="is-flex align-center">
                 <img class="post-avatar" src="/2018/11/27/hello/dos.png">
                 <span style="padding:0 10px;"> <span class="sub-title">By</span> Cicades</span>
-                <span class="post-date sub-title">at: 2018-12-11</span>
+                <span class="post-date sub-title">at: 2018-12-13</span>
             </div>
             
                 <div>
                     
-                         <a class="tag is-post-tag" href="/tags/Node-js/">Node.js</a>
+                         <a class="tag is-post-tag" href="/tags/js/">js</a>
                     
                 </div>
             
         </div>
         <div class="content" style="overflow: auto">
-            <h1 id="《Node-js-in-action》学习笔记"><a href="#《Node-js-in-action》学习笔记" class="headerlink" title="《Node.js in action》学习笔记"></a>《Node.js in action》学习笔记</h1><h2 id="1-Node-js-编程基础"><a href="#1-Node-js-编程基础" class="headerlink" title="1.Node.js 编程基础"></a>1.Node.js 编程基础</h2><h3 id="1-1模块系统"><a href="#1-1模块系统" class="headerlink" title="1.1模块系统"></a>1.1模块系统</h3><ul>
-<li><p>模块导入导出</p>
-<p>  <img src="/2018/12/11/Node-js-in-action/.Node-js-in-action/1.png" alt="模块导入导出"></p>
-</li>
-<li><p>模块的查找</p>
-<p>  <img src="/2018/12/11/Node-js-in-action/./Node-js-in-action/2.png" alt="模块的查找"></p>
-</li>
-</ul>
-<h3 id="1-2异步编程"><a href="#1-2异步编程" class="headerlink" title="1.2异步编程"></a>1.2异步编程</h3><ul>
-<li><p>用回调函数处理单次事件</p>
-</li>
-<li><p>用事件发射器处理重复性事件</p>
-</li>
-</ul>
-<blockquote>
-<p>eventEmitter.once(callback)-处理响应只发生一次的事件；eventEmitter.on(callback)-处理持续发生事件</p>
+            <h1 id="ES6项目"><a href="#ES6项目" class="headerlink" title="ES6项目"></a>ES6项目</h1><h2 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h2><blockquote>
+<p>项目主要分为三个大模块分别是：app(页面交互)，tasks(任务流控制)、server(数据提供)</p>
 </blockquote>
-<pre><code class="javascript">var EventEmitter = require(&#39;event&#39;).EventEmitter
-//创建事件发射器的实例
-var channel = new EventEmitter()
-
-//绑定名为&#39;join&#39;的事件，并添加callback,也可用addEventListener来注册事件
-channel.on(&#39;join&#39;, () =&gt; console.log(&#39;welcom&#39;))
-channel.on(&#39;join&#39;, () =&gt; console.log(&#39;to Node.js&#39;))
-//触发事件
-channel.emit(&#39;join&#39;)
-
-//移除指定监听器的某个事件,如：移除join的第二个事件
-channel.removeListener(&#39;join&#39;, () =&gt; console.log(&#39;to Node.js&#39;))
-
-//移除指定监听器的所有事件,移除&#39;join&#39;的所有事件
-channel.removeAllListeners(&#39;join&#39;)
-
-//获取某类型监听器的监听事件长度
-channel.listener(&#39;join&#39;).length
-
-//扩展事件发生器上的监听器数量
-channel.setMaxListeners(50)
-</code></pre>
-<h3 id="1-3异步逻辑的顺序化"><a href="#1-3异步逻辑的顺序化" class="headerlink" title="1.3异步逻辑的顺序化"></a>1.3异步逻辑的顺序化</h3><ul>
-<li><p>串行流程控制</p>
-</li>
-<li><p>并行流程控制</p>
-</li>
+<ul>
+<li><code>express</code>脚手架的使用（<a href="http://www.expressjs.com.cn/starter/generator.html" target="_blank" rel="noopener">使用教程</a></li>
 </ul>
 
         </div>
