@@ -8,18 +8,18 @@
   
   <title>JS模块化 | cicades&#39;blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件     browserify source.js -o bu">
+  <meta name="description" content="!(post-cover)[./JS模块化/1.png] js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS模块化">
 <meta property="og:url" content="http://yoursite.com/2018/12/13/JS模块化/index.html">
 <meta property="og:site_name" content="cicades&#39;blogs">
-<meta property="og:description" content="js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件     browserify source.js -o bu">
+<meta property="og:description" content="!(post-cover)[./JS模块化/1.png] js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-13T15:58:38.981Z">
+<meta property="og:updated_time" content="2018-12-14T04:23:47.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS模块化">
-<meta name="twitter:description" content="js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件     browserify source.js -o bu">
+<meta name="twitter:description" content="!(post-cover)[./JS模块化/1.png] js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件">
   
     <link rel="alternate" href="/atom.xml" title="cicades&#39;blogs" type="application/atom+xml">
   
@@ -160,7 +160,8 @@
             
         </div>
         <div class="content" style="overflow: auto">
-            <h1 id="js-模块化"><a href="#js-模块化" class="headerlink" title="js 模块化"></a>js 模块化</h1><h2 id="1-Common-js"><a href="#1-Common-js" class="headerlink" title="1.Common.js"></a>1.<code>Common.js</code></h2><blockquote>
+            <p>!(post-cover)[./JS模块化/1.png]</p>
+<h1 id="js-模块化"><a href="#js-模块化" class="headerlink" title="js 模块化"></a>js 模块化</h1><h2 id="1-Common-js"><a href="#1-Common-js" class="headerlink" title="1.Common.js"></a>1.<code>Common.js</code></h2><blockquote>
 <p>同步加载模块</p>
 </blockquote>
 <ul>
@@ -226,15 +227,21 @@ define({
 <ul>
 <li><p>环境配置</p>
 <ul>
-<li>工具安装<br><code>`</code>javascript<br>//安装babel-cli (command line interface)<br>npm i babel-cli -g</li>
+<li>工具安装</li>
 </ul>
-<p>//安装babel-preset-es2015(项目依赖)<br>npm i babel-preset-es2015 –save-dev</p>
-<pre><code>+ 添加`.babelrc` (babel run command)文件,并写入以下内容
-  ```json
-    {
-      &quot;presets&quot;: [&quot;es2015&quot;]
-    }
-</code></pre><ul>
+<pre><code class="javascript">//安装babel-cli (command line interface)
+npm i babel-cli -g
+
+//安装babel-preset-es2015(项目依赖)
+npm i babel-preset-es2015 --save-dev
+</code></pre>
+<ul>
+<li><p>添加<code>.babelrc</code> (babel run command)文件,并写入以下内容</p>
+<pre><code class="json">  {
+    &quot;presets&quot;: [&quot;es2015&quot;]
+  }
+</code></pre>
+</li>
 <li><p>使用方法</p>
 <pre><code class="shell">#先将js文件转换为es5语法
 babel inputdir -d outputdir
