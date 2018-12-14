@@ -8,18 +8,20 @@
   
   <title>JS模块化 | cicades&#39;blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="!(post-cover)[./JS模块化/1.png] js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件">
+  <meta name="description" content="js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件     browserify source.js -o b">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS模块化">
 <meta property="og:url" content="http://yoursite.com/2018/12/13/JS模块化/index.html">
 <meta property="og:site_name" content="cicades&#39;blogs">
-<meta property="og:description" content="!(post-cover)[./JS模块化/1.png] js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件">
+<meta property="og:description" content="js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件     browserify source.js -o b">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-14T04:23:47.606Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/13/JS模块化/JS模块化/1.png">
+<meta property="og:updated_time" content="2018-12-14T05:25:26.075Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS模块化">
-<meta name="twitter:description" content="!(post-cover)[./JS模块化/1.png] js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件">
+<meta name="twitter:description" content="js 模块化1.Common.js 同步加载模块   服务器端依赖于node 浏览器端则需运用插件browserify 使用方法    #先全局安装     npm i browserify -g     #在项目中进行安装     npm i browserify --save-dev     #使用:将目标文件编译并输出到制定的文件     browserify source.js -o b">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/13/JS模块化/JS模块化/1.png">
   
     <link rel="alternate" href="/atom.xml" title="cicades&#39;blogs" type="application/atom+xml">
   
@@ -160,7 +162,7 @@
             
         </div>
         <div class="content" style="overflow: auto">
-            <p>!(post-cover)[./JS模块化/1.png]</p>
+            <p><img src="/2018/12/13/JS模块化/./JS模块化/1.png" alt="post-cover"></p>
 <h1 id="js-模块化"><a href="#js-模块化" class="headerlink" title="js 模块化"></a>js 模块化</h1><h2 id="1-Common-js"><a href="#1-Common-js" class="headerlink" title="1.Common.js"></a>1.<code>Common.js</code></h2><blockquote>
 <p>同步加载模块</p>
 </blockquote>
@@ -256,8 +258,14 @@ browserify source.js -o bulid.js
 <pre><code class="javascript">  //导入模块；需要配合变量结构接受模块导出的变量
   import {var1, var2} from path
 
+  //导入第三包时，路径直接写包名即可,其规则模块规则与Common.js一样
+  import $ from &#39;jquery&#39;
+
   //暴露模块;使用export关键字暴露数据
   export data
+
+  //默认暴露，相当于module.exports = value
+  export default value
 </code></pre>
 </li>
 </ul>
